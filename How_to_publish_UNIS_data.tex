@@ -1,0 +1,217 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{natbib}
+\geometry{margin=1in}
+
+\newcommand{\emailauthors}{\href{mailto:lukem@unis.no,steinha@unis.no}{lukem@unis.no, steinha@unis.no}}
+
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
+
+\title{How to Publish UNIS Data - A Step by Step Guide}
+\author{
+    Luke Marsden, Stein Haaland \\
+    \emailauthors
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The most important product of research is knowledge. At UNIS, most of the knowledge is derived from in-situ observations of nature during field work. To preserve this information, UNIS has teamed up with Svalbard Integrated Earth Observation System (SIOS) to make scientific data available and easily accessible according to the Findable Accessible Interoperable Reusable (FAIR) principles \citep{wilkinson2016fair}.
+
+This document outlines a step-by-step procedure to go from digital measurements to data availability via the SIOS portal.
+\end{abstract}
+
+\tableofcontents
+
+\section*{Version Information}
+\label{sec:version-info}
+\begin{itemize}
+    \item Version 1.0 - Initial release - \today
+\end{itemize}
+
+\newpage
+
+\section{Data Collection and Quality Control}
+\label{sec:data-collection-quality-control}
+
+It is a good idea to have publishing in mind already when acquisition takes place, so make sure you record where and when the data were obtained, equipment used, condition etc., and whether the data can be classified as open (UNIS Data Classification). Also, make sure your observations are properly calibrated and have proper units. Erroneous data should not be archived, uncalibrated data sets should be clearly labeled as so in the metadata. 
+
+As a very simple example, we use a time series of sea temperatures taken outside Svalbard. The measurement series looks something like:
+
+\begin{table}[h!]
+\centering
+\caption{Example time series of sea temperatures}
+\label{table:sea-temperatures}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Time UTC} & \textbf{Depth} & \textbf{Latitude} & \textbf{Longitude} & \textbf{Temperature} \\
+\hline
+2024-06-07 13:10:23 & 10.12 & 78.3122 & 8.1012 & 5.33 \\
+2024-06-07 13:11:23 & 10.56 & 78.3163 & 8.1032 & 5.27 \\
+2024-06-07 13:12:23 & 10.23 & 78.3196 & 8.1061 & 5.25 \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Data Preparation}
+\label{sec:data-preparation}
+In this section, we will cover how to organise and clean your data before submission.
+
+\subsection{Organising Your Data}
+Ensure your data is well-organised. This includes:
+\begin{itemize}
+    \item Consistent file naming conventions
+    \item Clear directory structure
+    \item Documentation of the data collection process
+\end{itemize}
+
+\subsection{Data Cleaning}
+Clean your data to remove errors, duplicates, and inconsistencies. Tools such as Python, R, and specialised data cleaning software can be very useful in this process.
+
+\section{Suitable Data Formats}
+\label{sec:suitable-data-formats}
+
+\subsection{Why choice of data format matters}
+
+As a scientific community, we are now quite good at publishing our data in a way that makes them both findable and accessible. However, FAIR data must also be interoperable and reusable. Central to the FAIR principles is the requirement that data and metadata be fully readable and understandable by machines, a point emphasized throughout by Wilkinson et al. (2016). This machine-readability is crucial for building efficient and effective services on top of data at scale. Examples of services include the integration of multiple datasets, on-the-fly visualization of datasets, the development of monitoring systems and forecasting. This is increasingly important in the age of big data.
+
+Some particularly noteworthy services that deserve attention are:
+\begin{itemize}
+    \item \textbf{Destination Earth}: A project to develop a digital twin of the Earth.
+    \item \textbf{Global Biodiversity Information Facility (GBIF)}: An international network and data infrastructure that provides open access to data about all types of life on Earth, enabling research and informed decision-making in biodiversity conservation.
+    \item \textbf{Copernicus}: The European Union's Earth observation programme, providing comprehensive data for environmental monitoring, climate change analysis, and disaster management.
+\end{itemize}
+
+These projects exemplify the potential of FAIR data in enabling advanced research, integrated environmental monitoring, and comprehensive data-driven decision-making systems. Despite the critical importance of machine-readability, it is often overlooked in discussions about FAIR data, even by online resources that discuss or provide guidance on publishing FAIR data.
+
+So what makes a data format FAIR-compliant? 
+\\
+\\
+
+SIOS provides \href{https://sios-svalbard.org/sites/sios-svalbard.org/files/common/SDMS_Interoperability_Guidelines.pdf}{SDMS Interoperability Guidelines} that provide details regarding suitable and less suitable data formats. In the subsections below, we refer to a few suitable data formats for UNIS data and refer to resources available to help you create these.
+
+\subsection{CF-NetCDF}
+
+Reference tutorials on this:
+\begin{itemize}
+    \item \textbf{Introduction to CF-NetCDF}: \url{https://lhmarsden.github.io/Introduction_to_CF-NetCDF}
+    \item \textbf{Working with NetCDF files in Python}: \url{https://lhmarsden.github.io/NetCDF_in_Python_from_beginner_to_pro} \citep{marsden_netcdf_python}
+    \item \textbf{Working with NetCDF files in R}: \url{https://lhmarsden.github.io/NetCDF_in_R_from_beginner_to_pro} \citep{marsden_netcdf_r}
+\end{itemize}
+
+\subsubsection{Validating CF-NetCDF files}
+Validators you can use to ensure that your files are compliant with the CF and ACDD conventions before you publish them. For example:
+\begin{itemize}
+    \item \url{https://compliance.ioos.us/index.html}
+    \item \url{https://sios-svalbard.org/dataset_validation/form} (need a SIOS account)
+\end{itemize}
+
+\subsection{Darwin Core Archive}
+
+Darwin Core is a data standard originally developed for biodiversity informatics, though this has expanded to be useful for various types of data associated with one or a list of organisms. This includes (but not limited to):
+\begin{itemize}
+\item{Traits of an organism}
+\item{Fossil specimens}
+\item{Some experimental data}
+\item{Species lists derived from DNA data}
+\end{itemize}
+
+We advise that you publish measurements of the physical environment (e.g. soil moisture content if quantitative, air temperature, wind speed) separately in CF-NetCDF files. These data are useful to people who are not neccessarily interested in your `biological' data. Each publication can reference the other in the metadata so that someone interested in the data can see that they are related and how.
+
+Darwin Core includes
+\begin{itemize}
+\item Darwin Core terms: A controlled vocabulary of terms - \url{https://dwc.tdwg.org/terms/}
+\item Darwin Core Archive: A more-or-less FAIR-compliant data format
+\end{itemize} 
+
+The following document has been created to provide help you create and publish a Darwin Core Archive for scientific data. This also includes where you should publish the Darwin Core Archive.
+\url{https://github.com/lhmarsden/Darwin_Core_Archive_workshop/blob/main/How_to_create_a_DwCA_for_scientists.pdf}
+
+\section{Verification and Review}
+\label{sec:verification-review}
+
+Perform an internal review of your dataset before final submission. Just as with any other publication, all authors should have a chance to review the dataset be grant their approval before it is published.
+
+\section{Selecting a Data Centre}
+There are hundreds of data centres. Where should you publish your data? A good data centre should:
+\begin{itemize}
+    \item Provide your dataset with a DOI, unique to your dataset.
+    \item Ensure that your data will remain available through time. Data centres can achieve this by running routines to routinely open and close files to ensure that they have not become lost or corrupted. Some data centres (e.g. Zenodo) don’t offer this service.
+    \item Make your data as findable as possible.
+\end{itemize}
+
+Let’s elaborate on that last point. Data are important in their own right, independent of any associated paper publication. It can be surprising which datasets get used again. Furthermore, you should not consider your dataset in isolation. Your data are your contribution to a much larger collection of similar data that someone might want to use altogether. This is particularly relevant in the age of big data.
+
+A good data centre should require you to provide thorough ‘discovery’ metadata (metadata that helps someone find the data through a search engine – e.g. when and where the data were collected, by whom, some keywords). When assessing a data centre, you can test this yourself. How easy is it for you to speculatively find data from a certain region, collected in a certain year, for example?
+
+There are hundreds of data centres. It is impractical for a potential data user to search through all of them. Data access portals aim to make data from different data centres available through a single searchable catalogue. According to the UNIS data management plan (reference), all UNIS data should be made available via the SIOS data access portal, which is a catalogue of data relevant to Svalbard. SIOS does not host any data themselves; they harvest metadata from contributing data centres to provide links to the data.
+
+The best and easiest way to make your data available via the SIOS access portal is to publish to data centres that contribute to the SIOS. These are listed in the section ‘Allocation of resources’ of the SIOS data management plan: \url{https://sios-svalbard.org/system/files/common/Documents/SIOS_Data_Management_Plan.pdf}
+
+Of these data centres, Norwegian data centres should be prioritised.
+
+\begin{table}[h!]
+\centering
+\caption{Norwegian data centres contributing to SIOS}
+\label{table:norwegian-data-centres}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Link to site} & \textbf{Email address} & \textbf{How to make data available via SIOS} \\
+\hline
+NIRD Research Data Archive & \url{https://archive.norstore.no/} & archive.manager@norstore.no & Metadata collection form \\
+\hline
+Norwegian Marine Data Centre (NMDC) & \url{https://www.nmdc.no} & datahjelp@imr.no & Automatic \\
+\hline
+Norwegian Polar Data Centre (NPDC) & \url{https://data.npolar.no/home/} & data@npolar.no & Automatic \\
+\hline
+Arctic Data Centre (MET) & \url{https://adc.met.no/} & adc-support@met.no & Automatic \\
+\hline
+Norwegian Institute for Air Research (NILU) & \url{https://www.nilu.com/open-data/} & - & Automatic \\
+\hline
+\end{tabular}
+\end{table}
+
+Exceptions: GBIF, GenBank, talk about default data centres for certain types of data – as long as they meet certain conditions.
+
+UNIS endorses the work done by the Norwegian Scientific Data Network (NorDataNet - \url{https://www.nordatanet.no/en}) to make it easier for people to publish FAIR data. It is possible to publish CF-NetCDF files to NIRD Research Data Archive through NorDataNet. Using this method, the global attributes used in the CF-NetCDF file are used to populate the discovery metadata on the landing page of the dataset. One therefore does not have to enter this information manually. NorDataNet also provides access to tools for validating CF-NetCDF files, converting ASCII files to CF-NetCDF, spreadsheet templates for CF-NetCDF and Darwin Core Archives, and guidelines on what metadata should be included.
+
+Data published to a data centre that does not contribute to the SIOS data access portal must be linked manually using a metadata collection form hosted by SIOS: \url{https://sios-svalbard.org/metadata-collection-form}
+
+\section{Publication and Citation}
+\label{sec:publication-citation}
+Ensure your data is accessible and properly cited.
+
+\subsection{Obtaining a DOI}
+
+Good data centres should provide your publication with it's own landing page and recommended citation, including a DOI. This is all done for you when you publish your data.
+
+\subsection{Citing Your Data}
+
+Include the DOI in your publications and share it with collaborators. Your can include the citation for your data in your list of references, just as you would any other publication. 
+
+Properly citing datasets is important for several reasons:
+\begin{itemize}
+    \item \textbf{Credit to data creators}: Providers proper credit to the data providers in a way that academia recognises. 
+    \item \textbf{Tracking data use}: Some data centres scan through the references of publications for the DOIs of the datasets they host to provide statistics on data use on the landing page of the dataset. Tracking the impact and reach of datasets provides feedback to data creators.  
+    \item \textbf{Easier to find the data}: Provind the full citation makes it easier for someone to find the dataset, which is crucial for replicating the study or using the data for someone else.
+    \item \textbf{Legal and ethical responsibility}: Fulfills legal and ethical obligations to acknowledge the original data sources.
+    \item \textbf{Supporting data sharing initiatives}: Encourages the culture of data sharing by showing that datasets are valuable and acknowledged.
+\end{itemize}
+
+Some journels require you to include a data availability statement. This is fine, but this should be as well as (not instead of) including the citation in your list of references.
+
+
+\bibliography{ref}
+
+\end{document}
