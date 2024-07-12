@@ -79,6 +79,8 @@ Ensure your data is well-organised. This includes:
 \subsection{Data Cleaning}
 Clean your data to remove errors, duplicates, and inconsistencies. Tools such as Python, R, and specialised data cleaning software can be very useful in this process.
 
+Mention the Nansen Legacy template generator.
+
 \section{Suitable Data Formats}
 \label{sec:suitable-data-formats}
 
@@ -88,60 +90,125 @@ As a scientific community, we are now quite good at publishing our data in a way
 
 Some particularly noteworthy services that deserve attention are:
 \begin{itemize}
-    \item \textbf{Destination Earth}: A project to develop a digital twin of the Earth.
-    \item \textbf{Global Biodiversity Information Facility (GBIF)}: An international network and data infrastructure that provides open access to data about all types of life on Earth, enabling research and informed decision-making in biodiversity conservation.
-    \item \textbf{Copernicus}: The European Union's Earth observation programme, providing comprehensive data for environmental monitoring, climate change analysis, and disaster management.
+    \item \textbf{Destination Earth}: A project to develop a digital twin of the Earth. \url{https://destination-earth.eu/}
+    \item \textbf{Global Biodiversity Information Facility (GBIF)}: An international network and data infrastructure that provides open access to data about all types of life on Earth, enabling research and informed decision-making in biodiversity conservation. \url{https://www.gbif.org/}
+    \item \textbf{Copernicus}: The European Union's Sentinel Earth observation programme, providing comprehensive remote-sensing data for environmental monitoring, climate change analysis, and disaster management.\url{https://dataspace.copernicus.eu/explore-data}
 \end{itemize}
 
-These projects exemplify the potential of FAIR data in enabling advanced research, integrated environmental monitoring, and comprehensive data-driven decision-making systems. Despite the critical importance of machine-readability, it is often overlooked in discussions about FAIR data, even by online resources that discuss or provide guidance on publishing FAIR data.
+These projects exemplify the potential of FAIR data in enabling advanced research, integrated environmental monitoring, and comprehensive data-driven decision-making systems. By publishing FAIR data, we can contribute to services like these. Despite the critical importance of machine-readability, it is often overlooked in discussions about FAIR data, even by online resources that discuss or provide guidance on publishing FAIR data.
 
-So what makes a data format FAIR-compliant? 
-\\
-\\
+\subsection{What Makes a Data Format FAIR-compliant}
 
-SIOS provides \href{https://sios-svalbard.org/sites/sios-svalbard.org/files/common/SDMS_Interoperability_Guidelines.pdf}{SDMS Interoperability Guidelines} that provide details regarding suitable and less suitable data formats. In the subsections below, we refer to a few suitable data formats for UNIS data and refer to resources available to help you create these.
+To be considered FAIR-compliant, a data format must adhere to the following principles:
+
+\begin{itemize}
+\item \textbf{Software Independence:} Data formats should not be tied to a specific software. FAIR-compliant formats must be accessible using various software applications across different operating systems.
+\item \textbf{Inclusion of Metadata:} All necessary metadata required to understand and utilise the data should be embedded within the file.
+\item \textbf{Use of Controlled Vocabularies:} Both data and metadata terms should be derived from controlled vocabularies. A controlled vocabulary is a well-documented glossary of terms that is accessible online and actively maintained. Each term should include:
+\begin{itemize}
+\item A clear description
+\item Instructions on how to use the term
+\item A unique identifier to distinguish it from other terms
+\end{itemize}
+\item \textbf{Standardised Structure:} There should be defined conventions for the placement of data and metadata within the file. All files following these conventions should organise their data and metadata uniformly. The specific conventions adhered to by the dataset should be explicitly stated.
+\item \textbf{Machine Readability/Interoperability:} The aforementioned points are crucial in reducing the variability in file creation, thereby enhancing interoperability. This ensures that software or services can be developed to work with all datasets following the same conventions.
+\item \textbf{Documentation:} The data format should be well-documented, with comprehensive guidelines and examples provided to facilitate its use by others. Good documentation ensures that users can correctly interpret and utilise the data.
+\item \textbf{Versioning:} It is essential to maintain version control for data formats to track changes and updates over time. Additionally, data formats should ensure that past versions remain supported by future versions to guarantee long-term usability.
+\end{itemize}
+
+SIOS provides interoperability guidelines (\url{https://sios-svalbard.org/sites/sios-svalbard.org/files/common/SDMS_Interoperability_Guidelines.pdf}) that provide details regarding suitable and less suitable data formats. In the sections that follow, we refer to a few suitable data formats for UNIS data and refer to resources available to help you create these.
+
+Please note that this list might not cover all suitable FAIR-compliant data formats. If you think that something is missed, please let us know by emailing the authors.\\ \\
+Email: \emailauthors 
 
 \subsection{CF-NetCDF}
 
-Reference tutorials on this:
+Designed to facilitate the creation, access, and sharing of array-based scientific data with any number of dimensions.
+
+\subsubsection{Data that should be published in a CF-NetCDF file}
 \begin{itemize}
-    \item \textbf{Introduction to CF-NetCDF}: \url{https://lhmarsden.github.io/Introduction_to_CF-NetCDF}
+\item \textbf{Meteorological data:} such as temperature, pressure, and humidity measured at different altitudes and times
+\item \textbf{Oceanographic data:} such as sea temperature, salinity, or the concentration of chlorophyll a or different nutrients.
+\item \textbf{Model outputs:} consisting of multi-dimensional data arrays representing various environmental parameters, perhaps over time.
+\item \textbf{Environmental science:} such as ir quality, hydrology, and soil moisture
+\item \textbf{Point clouds/DEMs}
+\item \textbf{Some geological data:} such as sedimentary logs, borehole measurements
+\end{itemize}
+
+There is an ongoing effort to promote the use of NetCDF files across more disciplines – a movement quickly gaining traction. NetCDF files are suitable for any array-oriented scientific data with any number of dimensions. Using the same data format across multiple disciplines facilitates cross-disciplinary collaboration; scientists from different fields can more easily access and understand each other’s data without being impeded by unfamiliar formats.
+
+\subsubsection{Tutorials}
+
+\begin{itemize}
+    \item \textbf{Introduction to CF-NetCDF}: \url{https://lhmarsden.github.io/Introduction_to_CF-NetCDF} - includes tools and software that can be used to work with NetCDF files without code.
     \item \textbf{Working with NetCDF files in Python}: \url{https://lhmarsden.github.io/NetCDF_in_Python_from_beginner_to_pro} \citep{marsden_netcdf_python}
     \item \textbf{Working with NetCDF files in R}: \url{https://lhmarsden.github.io/NetCDF_in_R_from_beginner_to_pro} \citep{marsden_netcdf_r}
 \end{itemize}
 
-\subsubsection{Validating CF-NetCDF files}
+\subsubsection{Validators}
+
 Validators you can use to ensure that your files are compliant with the CF and ACDD conventions before you publish them. For example:
 \begin{itemize}
     \item \url{https://compliance.ioos.us/index.html}
     \item \url{https://sios-svalbard.org/dataset_validation/form} (need a SIOS account)
 \end{itemize}
 
+\subsubsection{Recommendations}
+\begin{itemize}
+\item NetCDF files should be encoded adhering to the Climate and Forecast (CF) conventions (\url{https://cfconventions.org/}). NetCDF is a container like JSON and XML and such not a recommended file format for data if it doesn't adhere to CF.
+\item CF-NetCDF files should also include global attributes according to the
+Attribute Convention for Dataset Discovery (\url{https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3}).
+\item It is \textbf{not} recommended to combine data from several stations in
+a single NetCDF/CF file.
+\end{itemize}
+
 \subsection{Darwin Core Archive}
 
-Darwin Core is a data standard originally developed for biodiversity informatics, though this has expanded to be useful for various types of data associated with one or a list of organisms. This includes (but not limited to):
+Darwin Core is a data standard originally developed for biodiversity informatics, though this has expanded to be useful for various types of data associated with one or a list of organisms. Darwin Core includes
 \begin{itemize}
-\item{Traits of an organism}
+\item Darwin Core terms: A controlled vocabulary of terms - \url{https://dwc.tdwg.org/terms/}
+\item Darwin Core Archive: A more-or-less FAIR-compliant data format
+\end{itemize}
+
+\subsubsection{Data that should be published in a Darwin Core Archive}
+\begin{itemize}
+\item{Biodiversity data}
+\item{Measurements or facts related to organisms (e.g. color, leaf size, height)}
 \item{Fossil specimens}
 \item{Some experimental data}
 \item{Species lists derived from DNA data}
 \end{itemize}
 
-We advise that you publish measurements of the physical environment (e.g. soil moisture content if quantitative, air temperature, wind speed) separately in CF-NetCDF files. These data are useful to people who are not neccessarily interested in your `biological' data. Each publication can reference the other in the metadata so that someone interested in the data can see that they are related and how.
+\subsubsection{Where to publish a Darwin Core Archive}
 
-Darwin Core includes
 \begin{itemize}
-\item Darwin Core terms: A controlled vocabulary of terms - \url{https://dwc.tdwg.org/terms/}
-\item Darwin Core Archive: A more-or-less FAIR-compliant data format
-\end{itemize} 
+\item \textbf{Marine data: } The Norwegian Marine Data Centre. Once published, the data will automatically become available via OBIS \url{www.obis.org} and GBIF \url{www.gbif.org}.
+\item \textbf{Terrestrial data: } GBIF Norway. Contact \href{mailto:helpdesk@gbif.no}{helpdesk@gbif.no} to start the process. Luke also has admin credentials to their Integrated Publishing Toolkit at the time of writing. 
+\end{itemize}
 
+\subsubsection{Tutorials}
+ 
 The following document has been created to provide help you create and publish a Darwin Core Archive for scientific data. This also includes where you should publish the Darwin Core Archive.
 \url{https://github.com/lhmarsden/Darwin_Core_Archive_workshop/blob/main/How_to_create_a_DwCA_for_scientists.pdf}
+
+\subsubsection{Validators}
+
+The Integrated Publishing Toolkit \citep{robertson2014gbif} includes validator to check that your data are okay before publishing. We recommend that you publish your data using the Integrated Publishing Toolkit.
+
+\subsubsection{Recommendations}
+
+\begin{itemize}
+\item We advise that you publish measurements of the physical environment (e.g. soil moisture content if quantitative, air temperature, wind speed) separately in CF-NetCDF files. These data are useful to people who are not neccessarily interested in your `biological' data. Each publication can reference the other in the metadata so that someone interested in the data can see that they are related and how.
+\end{itemize}
+
+
 
 \section{Verification and Review}
 \label{sec:verification-review}
 
 Perform an internal review of your dataset before final submission. Just as with any other publication, all authors should have a chance to review the dataset be grant their approval before it is published.
+
+Also, please make sure to run your data file through a validator if possible to ensure that it adheres to the conventions that you are stating that it should. See the section above for validators for different file formats.
 
 \section{Selecting a Data Centre}
 There are hundreds of data centres. Where should you publish your data? A good data centre should:
