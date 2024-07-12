@@ -42,44 +42,62 @@ This document outlines a step-by-step procedure to go from digital measurements 
 
 \newpage
 
-\section{Data Collection and Quality Control}
+\section{Data Collection, Preparation and Quality Control}
 \label{sec:data-collection-quality-control}
 
+\subsection{Think ahead}
 It is a good idea to have publishing in mind already when acquisition takes place, so make sure you record where and when the data were obtained, equipment used, condition etc., and whether the data can be classified as open (UNIS Data Classification - see \url{https://unissvalbard.sharepoint.com/Data%20Handling%20Science/ScienceDataGuidelines.pdf?web=1}). Also, make sure your observations are properly calibrated and have proper units. Erroneous data should not be archived, uncalibrated data sets should be clearly labeled as so in the metadata. 
 
-As a very simple example, we use a time series of sea temperatures taken outside Svalbard. The measurement series looks something like:
+\subsection{Consistent and structured files}
 
-\begin{table}[h!]
-\centering
-\caption{Example time series of sea temperatures}
-\label{table:sea-temperatures}
-\begin{tabular}{lcccc}
-\hline
-\textbf{Time UTC} & \textbf{Depth} & \textbf{Latitude} & \textbf{Longitude} & \textbf{Temperature} \\
-\hline
-2024-06-07 13:10:23 & 10.12 & 78.3122 & 8.1012 & 5.33 \\
-2024-06-07 13:11:23 & 10.56 & 78.3163 & 8.1032 & 5.27 \\
-2024-06-07 13:12:23 & 10.23 & 78.3196 & 8.1061 & 5.25 \\
-\hline
-\end{tabular}
-\end{table}
+Converting customised spreadsheets to a FAIR-compliant data formats can be time consuming. However, time can be saved by ensuring that the spreadsheets are well-structured and populated in a consistent way.
 
-\section{Data Preparation}
-\label{sec:data-preparation}
-In this section, we will cover how to organise and clean your data before submission.
-
-\subsection{Organising Your Data}
-Ensure your data is well-organised. This includes:
 \begin{itemize}
-    \item Consistent file naming conventions
-    \item Clear directory structure
-    \item Documentation of the data collection process
+\item Be consistent in how you are entering values.
+\begin{itemize}
+\item Don't mix numbers and characters in the same column
+\item Have a convention for missing values. Either leave the cells blank or use some fill value that you indicate elsewhere in your file
+\end{itemize}
+\item Use clear column headers. Don't use abbreviations.
+\item Specify the units for each column in the headers or in a separate file.
+\item Use consistent naming conventions for variables and also file names.
+\item Pretty formatting in Excel will disappear when you load the data into Python, R, Matlab, or other software that you might use to work with your data. Don't rely on Excel formatting to make your data understandable.
 \end{itemize}
 
-\subsection{Data Cleaning}
-Clean your data to remove errors, duplicates, and inconsistencies. Tools such as Python, R, and specialised data cleaning software can be very useful in this process.
+\subsection{Use templates}
 
-Mention the Nansen Legacy template generator.
+If an individual uses the same template for multiple data collections, they can write some code to automate converting their data. If communities develop templates, code can be shared or software can be developed for converting the templates. Data in the templates themselves can also be shared and more easily understood by other members of the community. Both data sharing and conversion to CF-NetCDF or Darwin Core Archives can be further simplified if the CF conventions and/or Darwin Core terms are considered when designing templates.
+
+If you will later be creating a Darwin Core Archive or CF-NetCDF file and you like to work with spreadsheets, consider using the Nansen Legacy template generator \citep{template_generator}.\\
+\url{https://www.nordatanet.no/aen/template-generator}.\\
+
+Key features:
+\begin{itemize}
+\item Separate configurations to help you create either a Darwin Core Archive or CF-NetCDF file
+\item Select from a full list of Darwin Core terms and CF standard names to use as column headers
+\item Outlines required and recommended data and metadata terms
+\item Descriptions for each term as notes when you select a cell
+\item Cell restrictions to prevent you from entering invalid values 
+\end{itemize}
+
+If the template generator helps you and your work, consider citing it just like you would a paper or data publication.
+
+%As a very simple example, we use a time series of sea temperatures taken outside Svalbard. The measurement series looks something like:
+%
+%\begin{table}[h!]
+%\centering
+%\caption{Example time series of sea temperatures}
+%\label{table:sea-temperatures}
+%\begin{tabular}{lcccc}
+%\hline
+%\textbf{Time UTC} & \textbf{Depth} & \textbf{Latitude} & \textbf{Longitude} & \textbf{Temperature} \\
+%\hline
+%2024-06-07 13:10:23 & 10.12 & 78.3122 & 8.1012 & 5.33 \\
+%2024-06-07 13:11:23 & 10.56 & 78.3163 & 8.1032 & 5.27 \\
+%2024-06-07 13:12:23 & 10.23 & 78.3196 & 8.1061 & 5.25 \\
+%\hline
+%\end{tabular}
+%\end{table}
 
 \section{Suitable Data Formats}
 \label{sec:suitable-data-formats}
@@ -271,7 +289,7 @@ Of the data centres that contribute to SIOS, Norwegian data centres should be pr
     \item \textbf{Email address:} \href{mailto:adc-support@met.no}{adc-support@met.no}
     \item \textbf{How to make data available via SIOS:} Automatic
     \item \textbf{How to start the process}: Email them
-    \item \textbf{Use for: } any data that contributes to the objectives of MET (e.g. meteorology, physical oceanography, sea ice, remote sensing, air pollution, model and climate analysis).
+    \item \textbf{Use for: } any data that contributes to the objectives of MET (e.g. meteorology, physical oceanography, sea ice, remote sensing, air pollution, models and climate analysis).
 \end{itemize}
 
 \subsubsection{Norwegian Institute for Air Research (NILU)}
@@ -286,6 +304,10 @@ Of the data centres that contribute to SIOS, Norwegian data centres should be pr
 \subsection{Exceptions - publishing your data elsewhere}
 
 Data can be published to the data centres listed above in most cases. However, there are some data services that exist that are the default for a certain type of data. Crucially, people actively use these services to look for data to research or making data-driven decisions. We want UNIS to contribute data to these services. 
+
+If you think we have missed something, please email us.\\
+
+\emailauthors
 
 \subsubsection{GBIF}
 
