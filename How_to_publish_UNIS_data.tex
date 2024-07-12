@@ -119,7 +119,9 @@ To be considered FAIR-compliant, a data format must adhere to the following prin
 SIOS provides interoperability guidelines (\url{https://sios-svalbard.org/sites/sios-svalbard.org/files/common/SDMS_Interoperability_Guidelines.pdf}) that provide details regarding suitable and less suitable data formats. In the sections that follow, we refer to a few suitable data formats for UNIS data and refer to resources available to help you create these.
 
 Please note that this list might not cover all suitable FAIR-compliant data formats. If you think that something is missed, please let us know by emailing the authors.\\ \\
-Email: \emailauthors 
+Email: \emailauthors  \\
+
+We also acknowledge that there may not be a suitable FAIR-compliant data format in all cases.
 
 \subsection{CF-NetCDF}
 
@@ -182,7 +184,7 @@ Darwin Core is a data standard originally developed for biodiversity informatics
 \subsubsection{Where to publish a Darwin Core Archive}
 
 \begin{itemize}
-\item \textbf{Marine data: } The Norwegian Marine Data Centre. Once published, the data will automatically become available via OBIS \url{www.obis.org} and GBIF \url{www.gbif.org}.
+\item \textbf{Marine data:} The Norwegian Marine Data Centre. Once published, the data will automatically become available via OBIS \url{www.obis.org} and GBIF \url{www.gbif.org}. Contact \href{mailto:datahjelp@hi.no}{datahjelp@hi.no} to start the process.
 \item \textbf{Terrestrial data: } GBIF Norway. Contact \href{mailto:helpdesk@gbif.no}{helpdesk@gbif.no} to start the process. Luke also has admin credentials to their Integrated Publishing Toolkit at the time of writing. 
 \end{itemize}
 
@@ -193,14 +195,15 @@ The following document has been created to provide help you create and publish a
 
 \subsubsection{Validators}
 
-The Integrated Publishing Toolkit \citep{robertson2014gbif} includes validator to check that your data are okay before publishing. We recommend that you publish your data using the Integrated Publishing Toolkit.
+The Integrated Publishing Toolkit includes a validator to check that your data are okay before publishing. We recommend that you publish your data using the Integrated Publishing Toolkit.
 
 \subsubsection{Recommendations}
 
 \begin{itemize}
+\item Use the Nansen Legacy template generator (\url{https://www.nordatanet.no/aen/template-generator/config%3DDarwin%20Core}) to prepare your data. It allows you to create structured spreadsheets containing separate sheets for each core or extensions. It provides you with requirements and recommendations for what terms you should be including as well as descriptions for each term.
+\item Publish your data using the Integrated Publishing Toolkit. Nodes are hosted by either GBIF Norway or the Norwegian Marine Data Centre.
 \item We advise that you publish measurements of the physical environment (e.g. soil moisture content if quantitative, air temperature, wind speed) separately in CF-NetCDF files. These data are useful to people who are not neccessarily interested in your `biological' data. Each publication can reference the other in the metadata so that someone interested in the data can see that they are related and how.
 \end{itemize}
-
 
 
 \section{Verification and Review}
@@ -211,6 +214,9 @@ Perform an internal review of your dataset before final submission. Just as with
 Also, please make sure to run your data file through a validator if possible to ensure that it adheres to the conventions that you are stating that it should. See the section above for validators for different file formats.
 
 \section{Selecting a Data Centre}
+
+\subsection{What makes a good data centre}
+
 There are hundreds of data centres. Where should you publish your data? A good data centre should:
 \begin{itemize}
     \item Provide your dataset with a DOI, unique to your dataset.
@@ -224,46 +230,108 @@ A good data centre should require you to provide thorough ‘discovery’ metada
 
 There are hundreds of data centres. It is impractical for a potential data user to search through all of them. Data access portals aim to make data from different data centres available through a single searchable catalogue. According to the UNIS data management plan (reference), all UNIS data should be made available via the SIOS data access portal, which is a catalogue of data relevant to Svalbard. SIOS does not host any data themselves; they harvest metadata from contributing data centres to provide links to the data.
 
-The best and easiest way to make your data available via the SIOS access portal is to publish to data centres that contribute to the SIOS. These are listed in the section ‘Allocation of resources’ of the SIOS data management plan: \url{https://sios-svalbard.org/system/files/common/Documents/SIOS_Data_Management_Plan.pdf}
+\subsection{Data centres that contribute to SIOS}
 
-Of these data centres, Norwegian data centres should be prioritised.
+The best and easiest way to make your data available via the SIOS access portal is to publish to data centres that contribute to the SIOS. These are listed in the section ‘Allocation of resources’ of the SIOS data management plan (\url{https://sios-svalbard.org/system/files/common/Documents/SIOS_Data_Management_Plan.pdf})
 
-\begin{table}[h!]
-\centering
-\caption{Norwegian data centres contributing to SIOS}
-\label{table:norwegian-data-centres}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\textbf{Name} & \textbf{Link to site} & \textbf{Email address} & \textbf{How to make data available via SIOS} \\
-\hline
-NIRD Research Data Archive & \url{https://archive.norstore.no/} & archive.manager@norstore.no & Metadata collection form \\
-\hline
-Norwegian Marine Data Centre (NMDC) & \url{https://www.nmdc.no} & datahjelp@imr.no & Automatic \\
-\hline
-Norwegian Polar Data Centre (NPDC) & \url{https://data.npolar.no/home/} & data@npolar.no & Automatic \\
-\hline
-Arctic Data Centre (MET) & \url{https://adc.met.no/} & adc-support@met.no & Automatic \\
-\hline
-Norwegian Institute for Air Research (NILU) & \url{https://www.nilu.com/open-data/} & - & Automatic \\
-\hline
-\end{tabular}
-\end{table}
+\subsection{The main data centres for UNIS data}
 
-Exceptions: GBIF, GenBank, talk about default data centres for certain types of data – as long as they meet certain conditions.
+Of the data centres that contribute to SIOS, Norwegian data centres should be prioritised for UNIS data.
 
-UNIS endorses the work done by the Norwegian Scientific Data Network (NorDataNet - \url{https://www.nordatanet.no/en}) to make it easier for people to publish FAIR data. It is possible to publish CF-NetCDF files to NIRD Research Data Archive through NorDataNet. Using this method, the global attributes used in the CF-NetCDF file are used to populate the discovery metadata on the landing page of the dataset. One therefore does not have to enter this information manually. NorDataNet also provides access to tools for validating CF-NetCDF files, converting ASCII files to CF-NetCDF, spreadsheet templates for CF-NetCDF and Darwin Core Archives, and guidelines on what metadata should be included.
+\subsubsection{NIRD Research Data Archive (NIRD RDA)}
+\begin{itemize}
+    \item \textbf{Link to site:} \url{https://archive.norstore.no/}
+    \item \textbf{Email address:} \href{mailto:archive.manager@norstore.no}{archive.manager@norstore.no}
+    \item \textbf{How to make data available via SIOS:} Metadata collection form, see section \ref{sec: linking data to sios}.
+    \item \textbf{How to start the process}: Data collection form on their site. For datasets too large to upload, begin the data collection form and email them to arrange data transfer.
+    \item \textbf{Use for: } any data
+\end{itemize}
 
-Data published to a data centre that does not contribute to the SIOS data access portal must be linked manually using a metadata collection form hosted by SIOS: \url{https://sios-svalbard.org/metadata-collection-form}
+\subsubsection{Norwegian Marine Data Centre (NMDC)}
+\begin{itemize}
+    \item \textbf{Link to site:} \url{https://www.nmdc.no}
+    \item \textbf{Email address:} \href{mailto:datahjelp@imr.no}{datahjelp@imr.no}
+    \item \textbf{How to make data available via SIOS:} Automatic
+    \item \textbf{How to start the process}: Email them
+    \item \textbf{Use for: } any marine data
+\end{itemize}
 
-\section{Publication and Citation}
-\label{sec:publication-citation}
-Ensure your data is accessible and properly cited.
+\subsubsection{Norwegian Polar Data Centre (NPDC)}
+\begin{itemize}
+    \item \textbf{Link to site:} \url{https://data.npolar.no/home/}
+    \item \textbf{Email address:} \href{mailto:data@npolar.no}{data@npolar.no}
+    \item \textbf{How to make data available via SIOS:} Automatic
+    \item \textbf{How to start the process}: Email them
+    \item \textbf{Use for: } any data
+\end{itemize}
 
-\subsection{Obtaining a DOI}
+\subsubsection{Arctic Data Centre (MET)}
+\begin{itemize}
+    \item \textbf{Link to site:} \url{https://adc.met.no/}
+    \item \textbf{Email address:} \href{mailto:adc-support@met.no}{adc-support@met.no}
+    \item \textbf{How to make data available via SIOS:} Automatic
+    \item \textbf{How to start the process}: Email them
+    \item \textbf{Use for: } any data that contributes to the objectives of MET (e.g. meteorology, physical oceanography, sea ice, remote sensing, air pollution, model and climate analysis).
+\end{itemize}
 
-Good data centres should provide your publication with it's own landing page and recommended citation, including a DOI. This is all done for you when you publish your data.
+\subsubsection{Norwegian Institute for Air Research (NILU)}
+\begin{itemize}
+    \item \textbf{Link to site:} \url{https://www.nilu.com/open-data/}
+    \item \textbf{Email address:} \href{mailto:nilu@nilu.no}{nilu@nilu.no}
+    \item \textbf{How to make data available via SIOS:} Automatic
+    \item \textbf{How to start the process}: Email them
+    \item \textbf{Use for: } atmospheric composition data
+\end{itemize}
 
-\subsection{Citing Your Data}
+\subsection{Exceptions - publishing your data elsewhere}
+
+Data can be published to the data centres listed above in most cases. However, there are some data services that exist that are the default for a certain type of data. Crucially, people actively use these services to look for data to research or making data-driven decisions. We want UNIS to contribute data to these services. 
+
+\subsubsection{GBIF}
+
+All biodiveristy data should be available via GBIF (\url{www.gbif.org}). GBIF is part of an interlinked network of data centres that host and share biodiversity data, along with OBIS (\url{www.obis.org}), Living Norway (\url{https://livingnorway.no/}) and iNaturalist (\url{https://www.inaturalist.org/}). 
+
+If you have marine data, you can publish them to the Norwegian Marine Data Centre and they will be made available via SIOS, GBIF and OBIS automatically.
+
+For terrestrial data, it is possible to publish a Darwin Core Archive with a data centre that contributes to SIOS and use the same DOI to publish it to GBIF. 
+
+It is likely that GBIF will be harvestable via SIOS in the next few years.
+
+\subsubsection{Sequence data}
+
+The International Nucleotide Sequence Database Collaboration (INSDC) is a global collaboration of independent governmental or non-profit organisations that manage nucleotide sequence databases.
+
+Participating databases are listed at \url{
+https://www.insdc.org/about-insdc/#vf-tabs__section-participating-databases}. This includes the European Nucleotide Archive (ENA) and GenBank.
+
+Data published to these services should be linked to SIOS using the metadata collection form as described in section \ref{sec: linking data to sios}.
+
+\section{Making your data available via SIOS}
+\label{sec: linking data to sios}
+
+If you publish your data to a data centre that SIOS is harvesting from, your data will automatically be made available via the SIOS data access portal. You might find that they are also available via other access portals too!
+ 
+Data published to a data centre that does not contribute to the SIOS data access portal must be linked manually using a metadata collection form hosted by SIOS: \url{https://sios-svalbard.org/metadata-collection-form}.
+
+\subsection{NIRD RDA}
+
+Note that at the time of writing, NIRD RDA is not being harvested by SIOS. This is likely to change in the near future. 
+
+There will soon be a way of publish CF-NetCDF files to NIRD RDA through NorDataNet (\url{https://www.nordatanet.no/en}). This will
+\begin{itemize}
+\item Retrieve most of the discovery metadata from the CF-NetCDF file so you don't have to enter it again.
+\item Make the data available via SIOS
+\end{itemize}
+
+To see whether this tool is now available: 
+
+\begin{enumerate}[label=\arabic*.]
+    \item Visit \href{https://www.nordatanet.no/en}{\texttt{https://www.nordatanet.no/en}}
+    \item Go to \texttt{Submit data} in the navigation bar at the top
+    \item Select \texttt{Submit data as NetCDF/CF}
+\end{enumerate}
+
+\section{Citing Your Data}
 
 Include the DOI in your publications and share it with collaborators. Your can include the citation for your data in your list of references, just as you would any other publication. 
 
