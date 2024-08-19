@@ -50,7 +50,7 @@ It is a good idea to have publishing in mind already when acquisition takes plac
 
 \subsection{Consistent and structured files}
 
-Converting customised spreadsheets to a FAIR-compliant data formats can be time consuming. However, time can be saved by ensuring that the spreadsheets are well-structured and populated in a consistent way.
+Converting customised files to a FAIR-compliant data formats can be time consuming. However, time can be saved by ensuring that the files are well-structured and populated in a consistent way.
 
 \begin{itemize}
 \item Be consistent in how you are entering values.
@@ -61,14 +61,14 @@ Converting customised spreadsheets to a FAIR-compliant data formats can be time 
 \item Use clear column headers. Don't use abbreviations.
 \item Specify the units for each column in the headers or in a separate file.
 \item Use consistent naming conventions for variables and also file names.
-\item Pretty formatting in Excel will disappear when you load the data into Python, R, Matlab, or other software that you might use to work with your data. Don't rely on Excel formatting to make your data understandable.
+\item Cell formatting in Excel will disappear when you load the data into Python, R, Matlab, or other software that you might use to work with your data. Don't rely on Excel formatting to make your data understandable.
 \end{itemize}
 
 \subsection{Use templates}
 
 If an individual uses the same template for multiple data collections, they can write some code to automate converting their data. If communities develop templates, code can be shared or software can be developed for converting the templates. Data in the templates themselves can also be shared and more easily understood by other members of the community. Both data sharing and conversion to CF-NetCDF or Darwin Core Archives can be further simplified if the CF conventions and/or Darwin Core terms are considered when designing templates.
 
-If you will later be creating a Darwin Core Archive or CF-NetCDF file and you like to work with spreadsheets, consider using the Nansen Legacy template generator \citep{template_generator}.\\
+If you will later be creating a Darwin Core Archive or CF-NetCDF file and you like to work with spreadsheets, consider using the Nansen Legacy template generator \citep{templategenerator, marsden2024nansen}.\\
 \url{https://www.nordatanet.no/aen/template-generator}.\\
 
 Key features:
@@ -113,7 +113,21 @@ Some particularly noteworthy services that deserve attention are:
     \item \textbf{Copernicus}: The European Union's Sentinel Earth observation programme, providing comprehensive remote-sensing data for environmental monitoring, climate change analysis, and disaster management.\url{https://dataspace.copernicus.eu/explore-data}
 \end{itemize}
 
-These projects exemplify the potential of FAIR data in enabling advanced research, integrated environmental monitoring, and comprehensive data-driven decision-making systems. By publishing FAIR data, we can contribute to services like these. Despite the critical importance of machine-readability, it is often overlooked in discussions about FAIR data, even by online resources that discuss or provide guidance on publishing FAIR data.
+These projects exemplify the potential of FAIR data in enabling advanced research, integrated environmental monitoring, and comprehensive data-driven decision-making systems. By publishing FAIR data, UNIS can contribute to services like these. 
+
+\subsubsection{Should all data be made FAIR-compliant?}
+
+This is a question that sparks some debate. Whilst it is relatively simple to publish certain data in FAIR-compliant data formats (e.g. time series of data, vertical profiles, biodiversity data), for some data it is more complicated (e.g. data from complex experiments, qualitative data). It is up to the data management community to make this process easier for scientists by providing support and developing tools to simplify the data transformation. 
+
+The UNIS data policy \citep{UNISdatapolicy} mandates that "All data are published in a self describing form ... where possible". This does not explicitely mention FAIR data. So, to elaborate here:
+\begin{itemize}
+\item Data that can be published in a FAIR-compliant format should be wherever plausible (can be done within an acceptable timeframe by an experienced user - new users should expect this to take more time).
+\item For complex datasets, if there are certain important variables that can be published in FAIR-compliant formats, these variables should be. 
+\item Some data might take an excessive time to publish in a FAIR-compliant data format and it simply isn't worth the time that would need to be invested to do so. In some cases the data don't fit well into such formats. In other cases, suitable data formats are not available. In such cases, we should be aiming for human-readable data. See section \ref{sec:humanreadable}.   
+\end{itemize} 
+
+If you are not sure whether your data should be published in a FAIR-compliant data format, email us.
+Email: \emailauthors  \\
 
 \subsection{What Makes a Data Format FAIR-compliant}
 
@@ -128,9 +142,9 @@ To be considered FAIR-compliant, a data format must adhere to the following prin
 \item Instructions on how to use the term
 \item A unique identifier to distinguish it from other terms
 \end{itemize}
-\item \textbf{Standardised Structure:} There should be defined conventions for the placement of data and metadata within the file. All files following these conventions should organise their data and metadata uniformly. The specific conventions adhered to by the dataset should be explicitly stated.
+\item \textbf{Standardised Structure:} There should be defined conventions for the placement of data and metadata within the file. All files following these conventions should organise their data and metadata in the same way. The specific conventions adhered to by the dataset should be explicitly stated.
 \item \textbf{Machine Readability/Interoperability:} The aforementioned points are crucial in reducing the variability in file creation, thereby enhancing interoperability. This ensures that software or services can be developed to work with all datasets following the same conventions.
-\item \textbf{Documentation:} The data format should be well-documented, with comprehensive guidelines and examples provided to facilitate its use by others. Good documentation ensures that users can correctly interpret and utilise the data.
+\item \textbf{Documentation:} The data format and conventions should be well-documented, with comprehensive guidelines and examples provided to facilitate its use by others. Good documentation ensures that users can correctly interpret and utilise the data.
 \item \textbf{Versioning:} It is essential to maintain version control for data formats to track changes and updates over time. Additionally, data formats should ensure that past versions remain supported by future versions to guarantee long-term usability.
 \end{itemize}
 
@@ -223,6 +237,24 @@ The Integrated Publishing Toolkit includes a validator to check that your data a
 \item We advise that you publish measurements of the physical environment (e.g. soil moisture content if quantitative, air temperature, wind speed) separately in CF-NetCDF files. These data are useful to people who are not neccessarily interested in your `biological' data. Each publication can reference the other in the metadata so that someone interested in the data can see that they are related and how.
 \end{itemize}
 
+\subsection{Human-readable data}
+\label{sec:humanreadable}
+
+Data that can't plausibly be published in FAIR-compliant data formats should be published in a way that is human-readable and understandable. This means that people who are not experts in your field should be able to understand your data using only the files that you have published. 
+
+You should consider the following:
+\begin{itemize}
+\item Use descriptive names for your variables. Don't use abbreviations. Bonus points if you take terms from controlled vocabularies and refer to the URI of the term used in your publication, e.g. \url{http://vocab.nerc.ac.uk/collection/P07/current/CFSN0023/} - clicking on this URI will give you a description for the term. You can search for terms here: \url{https://vocab.nerc.ac.uk/search_nvs/}.
+\item Don't rely on cell formatting (colours, bold font, merged cells) in software like Excel to make your data understandable. This formatting is lost when data are loaded into other software like R, Python, Matlab etc.
+\item Use software-independent files. Someone should not have to download extra software to read your data. CSV files are preferred to XLSX files.
+\item You should publish a README file in PDF format alongside your publication that includes:
+\begin{itemize}
+\item Metadata related to each data file published (how they were collected, where, when, how, by whom, what instruments or equiment were used). Consider following the list of requirements here \url{https://adc.met.no/node/4}. These terms are usually used for  what do each of the files in the publication 
+\item A paragraph (or a few) describing your data. Don't assume that the data user has or will read your paper.
+\item A description of what is included in each file published and how each file is formatted.
+\item Descriptions and units for each column header/variable name used.
+\end{itemize} 
+\end{itemize}
 
 \section{Verification and Review}
 \label{sec:verification-review}
@@ -239,18 +271,18 @@ There are hundreds of data centres. Where should you publish your data? A good d
 \begin{itemize}
     \item Provide your dataset with a DOI, unique to your dataset.
     \item Ensure that your data will remain available through time. Data centres can achieve this by running routines to routinely open and close files to ensure that they have not become lost or corrupted. Some data centres (e.g. Zenodo) don’t offer this service.
-    \item Make your data as findable as possible.
+    \item Make your data as easy to find as possible.
 \end{itemize}
 
 Let’s elaborate on that last point. Data are important in their own right, independent of any associated paper publication. It can be surprising which datasets get used again. Furthermore, you should not consider your dataset in isolation. Your data are your contribution to a much larger collection of similar data that someone might want to use altogether. This is particularly relevant in the age of big data.
 
-A good data centre should require you to provide thorough ‘discovery’ metadata (metadata that helps someone find the data through a search engine – e.g. when and where the data were collected, by whom, some keywords). When assessing a data centre, you can test this yourself. How easy is it for you to speculatively find data from a certain region, collected in a certain year, for example?
+A good data centre should require you to provide thorough `discovery’ metadata (metadata that helps someone find the data through a search engine – e.g. when and where the data were collected, by whom, some keywords). When assessing a data centre, you can test this yourself. How easy is it for you to speculatively find data from a certain region, collected in a certain year, for example?
 
-There are hundreds of data centres. It is impractical for a potential data user to search through all of them. Data access portals aim to make data from different data centres available through a single searchable catalogue. According to the UNIS data management plan (reference), all UNIS data should be made available via the SIOS data access portal, which is a catalogue of data relevant to Svalbard. SIOS does not host any data themselves; they harvest metadata from contributing data centres to provide links to the data.
+There are hundreds of data centres. It is impractical for a potential data user to search through all of them. Data access portals aim to make data from different data centres available through a single searchable catalogue. According to the UNIS data management plan, all UNIS data should be made available via the SIOS data access portal, which is a catalogue of data relevant to Svalbard. SIOS does not host any data themselves; they harvest metadata from contributing data centres to provide links to the data.
 
 \subsection{Data centres that contribute to SIOS}
 
-The best and easiest way to make your data available via the SIOS access portal is to publish to data centres that contribute to the SIOS. These are listed in the section ‘Allocation of resources’ of the SIOS data management plan (\url{https://sios-svalbard.org/system/files/common/Documents/SIOS_Data_Management_Plan.pdf})
+The best and easiest way to make your data available via the SIOS access portal is to publish to data centres that contribute to the SIOS. These are listed in the section `Allocation of resources’ of the SIOS data management plan (\url{https://sios-svalbard.org/system/files/common/Documents/SIOS_Data_Management_Plan.pdf})
 
 \subsection{The main data centres for UNIS data}
 
@@ -323,8 +355,9 @@ It is likely that GBIF will be harvestable via SIOS in the next few years.
 
 The International Nucleotide Sequence Database Collaboration (INSDC) is a global collaboration of independent governmental or non-profit organisations that manage nucleotide sequence databases.
 
-Participating databases are listed at \url{
-https://www.insdc.org/about-insdc/#vf-tabs__section-participating-databases}. This includes the European Nucleotide Archive (ENA) and GenBank.
+Participating databases are listed at 
+\url{https://www.insdc.org/about-insdc/#vf-tabs__section-participating-databases}. 
+This includes the European Nucleotide Archive (ENA) and GenBank.
 
 Data published to these services should be linked to SIOS using the metadata collection form as described in section \ref{sec: linking data to sios}.
 
@@ -333,7 +366,7 @@ Data published to these services should be linked to SIOS using the metadata col
 
 If you publish your data to a data centre that SIOS is harvesting from, your data will automatically be made available via the SIOS data access portal. You might find that they are also available via other access portals too!
  
-Data published to a data centre that does not contribute to the SIOS data access portal must be linked manually using a metadata collection form hosted by SIOS: \url{https://sios-svalbard.org/metadata-collection-form}.
+Data published to a data centre that does not contribute to the SIOS data access portal must be linked manually using a metadata collection form hosted by SIOS: \url{https://sios-svalbard.org/metadata-collection-form}. Please note that SIOS are not able to create services on top of data linked manually to SIOS (e.g. visualisation, aggregation). Only a link to the data will be provided. 
 
 \subsection{NIRD RDA}
 
@@ -367,7 +400,6 @@ Properly citing datasets is important for several reasons:
 \end{itemize}
 
 Some journals require you to include a data availability statement. This is fine, but this should be as well as (not instead of) including the citation in your list of references.
-
 
 \bibliography{ref}
 
